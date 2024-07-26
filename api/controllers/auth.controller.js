@@ -69,6 +69,5 @@ const age = 1000 * 3600 * 24 * 7;
 };
 
 export const logout = (req, res) => {
-  // db operations
   res.clearCookie("token").status(200).json({ message: "Logout successful" });
 };
