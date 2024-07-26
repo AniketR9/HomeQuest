@@ -5,6 +5,7 @@ import Layout from "../src/routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
 import Login from "../src/routes/login/login";
 import Profile from "../src/routes/profilePage/profilePage";
+import Register from "./routes/register/register";
 
 function App() {
 
@@ -32,6 +33,10 @@ function App() {
       {
         path:"/login",
         element:<Login />
+      },
+      {
+        path:"/register",
+        element:<Register/>
       }
     ]
   }
