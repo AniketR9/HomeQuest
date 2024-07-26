@@ -52,8 +52,6 @@ const age = 1000 * 3600 * 24 * 7;
       },
       process.env.JWT_SECRET_KEY, {expiresIn: age}
     );
-
-    
     res
       .cookie("token", token, {
         httpOnly: true,
