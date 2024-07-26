@@ -28,6 +28,10 @@ function App() {
       {
         path:"/profile",
         element:<Profile />
+      },
+      {
+        path:"/login",
+        element:<Login />
       }
     ]
   }

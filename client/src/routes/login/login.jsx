@@ -6,7 +6,8 @@ function Login(){
     return (
         <div className="login">
       <div className="formContainer">
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}> */}
+        <form action="">
           <h1>Welcome back</h1>
           <input
             name="username"
@@ -22,8 +23,8 @@ function Login(){
             required
             placeholder="Password"
           />
-          <button disabled={isLoading}>Login</button>
-          {error && <span>{error}</span>}
+          <button >Login</button>
+          {/* {error && <span>{error}</span>} */}
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>
       </div>
