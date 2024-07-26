@@ -45,12 +45,13 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     // Generate cookie token and send to the user
     // res.setHeader("Set-Cookie","test="+"myValue").json("success");
-const age = 1000 * 3600 * 24 * 7;
+    const age = 1000 * 3600 * 24 * 7;
     const token = jwt.sign(
       {
         id: user.id,
       },
-      process.env.JWT_SECRET_KEY, {expiresIn: age}
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: age }
     );
     res
       .cookie("token", token, {
