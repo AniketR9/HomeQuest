@@ -3,7 +3,7 @@ import List from "../../components/list/List";
 import "./profilePage.scss";
 import apiRequest from "../../lib/apiRequest.js"
 import {Link,useNavigate} from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
 function ProfilePage() {
@@ -11,6 +11,12 @@ function ProfilePage() {
   const {updateUser,currentUser}=useContext(AuthContext);
 
   const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!currentUser){
+      navigate("/login");
+    }
+  },[currentUser,navigate] )
   const handleLogout= async () =>{
     try {
       await apiRequest.post("/auth/logout");
@@ -21,7 +27,8 @@ function ProfilePage() {
     }
   }
   return (
-    <div className="profilePage">
+    currentUser && (
+       <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
@@ -61,6 +68,7 @@ function ProfilePage() {
          </div>
        </div>
     </div>
+    )
   );
 }
 
