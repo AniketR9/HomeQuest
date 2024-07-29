@@ -1,23 +1,17 @@
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import "./profilePage.scss";
-import apiRequest from "../../lib/apiRequest.js"
-import {Link,useNavigate} from "react-router-dom";
-import { useContext, useEffect } from "react";
+import apiRequest from "../../lib/apiRequest.js";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
 function ProfilePage() {
+  const { updateUser, currentUser } = useContext(AuthContext);
 
-  const {updateUser,currentUser}=useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const navigate=useNavigate();
-
-  useEffect(()=>{
-    if(!currentUser){
-      navigate("/login");
-    }
-  },[currentUser,navigate] )
-  const handleLogout= async () =>{
+  const handleLogout = async () => {
     try {
       await apiRequest.post("/auth/logout");
       updateUser(null);
@@ -25,10 +19,9 @@ function ProfilePage() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
   return (
-    currentUser && (
-       <div className="profilePage">
+    <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
@@ -38,10 +31,7 @@ function ProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img
-                src={currentUser.avatar || "/noavatar.jpg"}
-                alt="Avatar"
-              />
+              <img src={currentUser.avatar || "/noavatar.jpg"} alt="Avatar" />
             </span>
             <span>
               Username: <b>{currentUser.username}</b>
@@ -62,13 +52,12 @@ function ProfilePage() {
           <List />
         </div>
       </div>
-      <div className="chatContainer"> 
-        <div className="wrapper"> 
-          <Chat/> 
-         </div>
-       </div>
+      <div className="chatContainer">
+        <div className="wrapper">
+          <Chat />
+        </div>
+      </div>
     </div>
-    )
   );
 }
 
