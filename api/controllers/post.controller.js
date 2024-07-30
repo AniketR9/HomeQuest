@@ -12,8 +12,8 @@ export const getPosts=async (req,res)=>{
                 property:query.property ||undefined,
                 bedroom: parseInt(query.property) ||undefined,
                 price:{
-                    gte:parseInt(query.minPrice) || 0,
-                    lte:parseInt(query.maxPrice)|| 1000000000,
+                    gte:parseInt(query.minPrice) || undefined,
+                    lte:parseInt(query.maxPrice)|| undefined,
                 }
             }
         });
