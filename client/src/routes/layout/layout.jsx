@@ -35,4 +35,4 @@ function RequireAuth() {
   }
 }
 
-export {Layout,RequireAuth};
+export { Layout, RequireAuth };

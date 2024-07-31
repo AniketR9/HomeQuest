@@ -1,4 +1,3 @@
-import { listData } from "../../lib/dummydata";
 import "./listPage.scss";
 import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
@@ -29,7 +28,7 @@ function ListPage() {
         </div>
       </div>
       <div className="mapContainer">
-      <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
           <Await
             resolve={data.postResponse}
             errorElement={<p>Error loading posts!</p>}

@@ -1,38 +1,38 @@
-import "./homepage.scss";
-import SearchBar from "../../components/searchbar/SearchBar";
-import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import SearchBar from "../../components/searchBar/SearchBar";
+import "./homePage.scss";
+import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
-  const {currentUser}=useContext(AuthContext);
 
-  console.log(currentUser);
+  const {currentUser} = useContext(AuthContext)
+
   return (
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">
-            Find Real Estate & Get Your Dream Place Today
-          </h1>
+          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
           <p>
-            dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu non
-            odio euismod lacinia at quis risus sed vulputate odio
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+            explicabo suscipit cum eius, iure est nulla animi consequatur
+            facilis id pariatur fugit quos laudantium temporibus dolor ea
+            repellat provident impedit!
           </p>
           <SearchBar />
           <div className="boxes">
             <div className="box">
-              <h1>10+</h1>
+              <h1>16+</h1>
               <h2>Years of Experience</h2>
             </div>
             <div className="box">
               <h1>200</h1>
-              <h2>Awards Gained</h2>
+              <h2>Award Gained</h2>
             </div>
             <div className="box">
-              <h1>1200+</h1>
-              <h2>Properties listed</h2>
-            </div> 
-         </div>
+              <h1>2000+</h1>
+              <h2>Property Ready</h2>
+            </div>
+          </div>
         </div>
       </div>
       <div className="imgContainer">

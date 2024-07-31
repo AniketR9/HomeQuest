@@ -1,17 +1,17 @@
+import { useState } from "react";
 import "./newPostPage.scss";
-import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
-import UploadWidget from "../../components/uploadWidget/uploadWidget";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 
 function NewPostPage() {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
   const [images, setImages] = useState([]);
+  const [error, setError] = useState("");
 
-  const navigate=useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ function NewPostPage() {
     const inputs = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.post("/post", {
+      const res = await apiRequest.post("/posts", {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),
@@ -44,12 +44,13 @@ function NewPostPage() {
           restaurant: parseInt(inputs.restaurant),
         },
       });
-      navigate("/"+res.data.id);
+      navigate("/"+res.data.id)
     } catch (err) {
       console.log(err);
-      setError(err);
+      setError(error);
     }
   };
+
   return (
     <div className="newPostPage">
       <div className="formContainer">
@@ -110,6 +111,7 @@ function NewPostPage() {
                 <option value="land">Land</option>
               </select>
             </div>
+
             <div className="item">
               <label htmlFor="utilities">Utilities Policy</label>
               <select name="utilities">
@@ -156,15 +158,14 @@ function NewPostPage() {
         </div>
       </div>
       <div className="sideContainer">
-        {images.map((image,index)=>{
-            <img src={image} key={index} alt="" />
-        })}
+        {images.map((image, index) => (
+          <img src={image} key={index} alt="" />
+        ))}
         <UploadWidget
           uwConfig={{
-            cloudName: "dx37wrey8",
-            uploadPreset: "homequesthq",
             multiple: true,
-            maxImageFileSize: 2000000,
+            cloudName: "lamadev",
+            uploadPreset: "estate",
             folder: "posts",
           }}
           setState={setImages}

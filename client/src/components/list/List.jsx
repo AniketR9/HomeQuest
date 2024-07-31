@@ -8,7 +8,7 @@ function List({posts}){
         <Card key={item.id} item={item}/>
       ))}
     </div>
-  );
+  )
 }
 
 export default List;

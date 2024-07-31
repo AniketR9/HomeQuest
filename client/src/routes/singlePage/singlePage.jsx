@@ -1,31 +1,31 @@
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
-import DOMPurify from "dompurify";
 import Map from "../../components/map/Map";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { useNavigate, useLoaderData } from "react-router-dom";
+import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
   const post = useLoaderData();
-  const [saved,setSaved]=useState(post.isSaved);
-  const {currentUser}=useContext(AuthContext);
-  const navigate=useNavigate();
-  // console.log(post);
-  const handleSave=async()=>{
-    
-      if (!currentUser) {
-        navigate("/login");
-      }
-      setSaved((prev) => !prev);
-    try{  
-      await apiRequest.post("/user/save", { postId: post.id });
-    }catch(err){
+  const [saved, setSaved] = useState(post.isSaved);
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSave = async () => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+    // AFTER REACT 19 UPDATE TO USEOPTIMISTIK HOOK
+    setSaved((prev) => !prev);
+    try {
+      await apiRequest.post("/users/save", { postId: post.id });
+    } catch (err) {
       console.log(err);
       setSaved((prev) => !prev);
     }
-  }
+  };
 
   return (
     <div className="singlePage">
@@ -65,9 +65,9 @@ function SinglePage() {
               <div className="featureText">
                 <span>Utilities</span>
                 {post.postDetail.utilities === "owner" ? (
-                  <p>Owner is Responsible</p>
+                  <p>Owner is responsible</p>
                 ) : (
-                  <p>Tenant is Responsible.</p>
+                  <p>Tenant is responsible</p>
                 )}
               </div>
             </div>
@@ -112,7 +112,6 @@ function SinglePage() {
               <div className="featureText">
                 <span>School</span>
                 <p>
-                  {" "}
                   {post.postDetail.school > 999
                     ? post.postDetail.school / 1000 + "km"
                     : post.postDetail.school + "m"}{" "}
@@ -121,14 +120,14 @@ function SinglePage() {
               </div>
             </div>
             <div className="feature">
-              <img src="/bus.png" alt="" />
+              <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
                 <p>{post.postDetail.bus}m away</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/restaurant.png" alt="" />
+              <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Restaurant</span>
                 <p>{post.postDetail.restaurant}m away</p>
@@ -142,13 +141,16 @@ function SinglePage() {
           <div className="buttons">
             <button>
               <img src="/chat.png" alt="" />
-              Send a message
+              Send a Message
             </button>
-            <button onClick={handleSave} style={{
-              backgroundColor:saved?"#fece51":"white"
-            }}>
+            <button
+              onClick={handleSave}
+              style={{
+                backgroundColor: saved ? "#fece51" : "white",
+              }}
+            >
               <img src="/save.png" alt="" />
-              {saved ?"Place Saved":"Save the place"}
+              {saved ? "Place Saved" : "Save the Place"}
             </button>
           </div>
         </div>

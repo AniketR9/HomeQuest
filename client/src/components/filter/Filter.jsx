@@ -8,9 +8,9 @@ function Filter() {
     type: searchParams.get("type") || "",
     city: searchParams.get("city") || "",
     property: searchParams.get("property") || "",
-    minPrice: searchParams.get("minPrice") || 0,
-    maxPrice: searchParams.get("maxPrice") || 10000000,
-    bedroom: searchParams.get("bedroom") || 1,
+    minPrice: searchParams.get("minPrice") || "",
+    maxPrice: searchParams.get("maxPrice") || "",
+    bedroom: searchParams.get("bedroom") || "",
   });
 
   const handleChange = (e) => {
@@ -45,16 +45,26 @@ function Filter() {
       <div className="bottom">
         <div className="item">
           <label htmlFor="type">Type</label>
-          <select name="type" id="type" onChange={handleChange} defaultValue={query.type}>
-            <option value="any">Any</option>
+          <select
+            name="type"
+            id="type"
+            onChange={handleChange}
+            defaultValue={query.type}
+          >
+            <option value="">any</option>
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
           </select>
         </div>
         <div className="item">
           <label htmlFor="property">Property</label>
-          <select name="prperty" id="property" onChange={handleChange} defaultValue={query.property}>
-            <option value="any">Any</option>
+          <select
+            name="property"
+            id="property"
+            onChange={handleChange}
+            defaultValue={query.property}
+          >
+            <option value="">any</option>
             <option value="apartment">Apartment</option>
             <option value="house">House</option>
             <option value="condo">Condo</option>
@@ -62,34 +72,34 @@ function Filter() {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="minPrice">Min. Budget</label>
+          <label htmlFor="minPrice">Min Price</label>
           <input
             type="number"
             id="minPrice"
             name="minPrice"
-            placeholder="Minimum Budget"
+            placeholder="any"
             onChange={handleChange}
             defaultValue={query.minPrice}
           />
         </div>
         <div className="item">
-          <label htmlFor="maxPrice">Max Budget</label>
+          <label htmlFor="maxPrice">Max Price</label>
           <input
-            type="number"
+            type="text"
             id="maxPrice"
             name="maxPrice"
-            placeholder="Maximum Budget"
+            placeholder="any"
             onChange={handleChange}
             defaultValue={query.maxPrice}
           />
         </div>
         <div className="item">
-          <label htmlFor="bedroom">BedRoom</label>
+          <label htmlFor="bedroom">Bedroom</label>
           <input
             type="text"
             id="bedroom"
             name="bedroom"
-            placeholder="Any"
+            placeholder="any"
             onChange={handleChange}
             defaultValue={query.bedroom}
           />
